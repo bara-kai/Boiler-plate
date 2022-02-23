@@ -1,0 +1,46 @@
+.s02-a-t {
+  opacity: 0;
+
+  &.inview {
+    opacity: 1;
+
+    & .char {
+      display: inline-block;
+    }
+  }
+
+  & .char {
+    opacity: 0;
+  }
+}
+
+.s02-a-t.inview .char {
+  @include animation(
+    $name: kf-tr-cc,
+    $duration: 3s,
+    $timing-function: cubic-bezier(0.45, 0.12, 0.04, 0.96),
+    $fill-mode: both
+  );
+
+  @for $i from 1 through 30 {
+    &:nth-child(#{$i}) {
+      animation-delay: $i * 0.04s;
+    }
+  }
+}
+
+@keyframes kf-tr-cc {
+  0% {
+    opacity: 0;
+    transform: rotateY(90deg);
+  }
+  50% {
+    opacity: 1;
+    transform: rotateY(0);
+    color: $c7;
+  }
+  100% {
+    opacity: 1;
+    color: $c6;
+  }
+}

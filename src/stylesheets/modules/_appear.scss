@@ -1,0 +1,83 @@
+$pattern: (
+  'up': translateY(6px),
+  'down': translateY(-6px),
+  'left': translateX(40px),
+  'lleft': translateX(10px),
+  'right': translateX(-40px),
+  'lright': translateX(-10px),
+);
+
+@each $key, $value in $pattern {
+  .appear.#{$key} {
+    & .item {
+      transform: $value;
+    }
+  }
+}
+
+.appear {
+  & .item {
+    transition: transform 0.8s, opacity 0.8s;
+    opacity: 0;
+  }
+  &.inview {
+    & .item {
+      opacity: 1;
+      transform: none;
+
+      @for $i from 1 through 10 {
+        &:nth-child(#{$i}) {
+          transition-delay: $i * 0.1s;
+        }
+      }
+    }
+  }
+}
+
+@each $key, $value in $pattern {
+  .slow-appear.#{$key} {
+    & .item {
+      transform: $value;
+    }
+  }
+}
+
+.slow-appear {
+  & .item {
+    transition: transform 1.5s, opacity 1.5s;
+    opacity: 0;
+  }
+  &.inview {
+    & .item {
+      opacity: 1;
+      transform: none;
+
+      @for $i from 1 through 10 {
+        &:nth-child(#{$i}) {
+          transition-delay: $i * 0.1s;
+        }
+      }
+    }
+  }
+}
+
+@each $key, $value in $pattern {
+  .s02main-text-appear.#{$key} {
+    & .item {
+      transform: $value;
+    }
+  }
+}
+
+.s02main-text-appear {
+  & .item {
+    transition: opacity 3s ease 1.5s, transform 3s ease 1.5s;
+    opacity: 0;
+  }
+  &.inview {
+    & .item {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
